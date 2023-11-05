@@ -5,7 +5,7 @@ AI Adoption Metrics is a cutting-edge tool designed to provide comprehensive rep
 ## Built With
 
 - [Langchain](https://langchain.readthedocs.io/) - For seamless AI integration and processing.
-- [Claude](https://openai.com/claude/) - Utilizing OpenAI's advanced language model for deep insights.
+- [Claude](https://claude.ai/) - Utilizing Anthropic's advanced language model for deep insights.
 - [TypeScript](https://www.typescriptlang.org/) - Application written in TypeScript for robust and maintainable code.
 - [AWS Lambda and API Gateway](https://aws.amazon.com/lambda/) - For scalable, on-demand cloud deployment.
 
