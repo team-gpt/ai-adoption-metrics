@@ -1,6 +1,15 @@
 # AI Adoption Metrics
 
-AI Adoption Metrics is a cutting-edge tool designed to provide comprehensive reports on AI adoption within teams. Leveraging the power of Langchain and Claude, our application processes chat data to deliver insights on AI utilization, frequency, preferences for different models, and other valuable metrics. Developed to support teams in understanding and optimizing their AI engagement, AI Adoption Metrics is an essential asset for anyone looking to enhance their team's technological integration.
+Welcome to [AI Adoption Metrics](https://aiadoptionmetrics.com/) - an open-source project designed to understand the intricacies of how, why, and when users are interacting with Language Learning Models (LLMs). Our focus is on analyzing conversations from various chat interfaces such as ChatGPT, Team-GPT, and Claude, providing insights into AI adoption and usage.
+
+## Features
+
+- **Out-of-the-Box Compatibility**: Designed to work seamlessly with Team-GPT and ChatGPT.
+- **Custom Integration**: For incorporating other projects, refer to our comprehensive documentation for data preparation and preprocessing guidelines.
+- **Advanced Analytics**: We use Claude for its extensive context capabilities to deliver detailed reports.
+- **Intelligent Summarization**: Our system expertly chunks and summarizes conversations to stay within LLM context limits.
+- **Engineered Prompting**: A default prompt is crafted to elicit intelligent and contextually relevant responses from the AI. This prompt can be customized as needed.
+- **Email Integration**: Post-report creation, an automated email can be sent to users. While we assume you have a native system for transactional emails, we recommend tools like Zapier for automation if needed.
 
 ## Built With
 
@@ -21,37 +30,76 @@ AI Adoption Metrics is a cutting-edge tool designed to provide comprehensive rep
 ### Prerequisites
 
 - Node.js
-- AWS CLI configured with your AWS account
-
+- Anthropic API key
+- AWS account
+  
 ### Installation
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/AI-Adoption-Metrics.git
+   git clone https://github.com/yourusername/ai-adoption-metrics.git
    ```
 2. Navigate to the project directory:
    ```sh
-   cd AI-Adoption-Metrics
+   cd ai-adoption-metrics
    ```
 3. Install NPM packages:
    ```sh
    npm install
    ```
+4. Run deploy package:
+   ```sh
+   npm run deploy
+   ```
+5. Unarchive
+6. Archive `node_modules` as well as the content in `dist` folder (without `dist` folder)
 
 ### Deployment
 
-To deploy AI Adoption Metrics on AWS Lambda with an API Gateway:
+1. Create `AWS Lambda Function` - follow this [guide](https://aws.amazon.com/pm/lambda/) and add code from the `zip` you created
+2. Add env variables - `ANTHROPIC_API_KEY` and `MODEL_TEMPERATURE`
+3. You can use the Lambda in the preferred way for you, but I suggest using [API Gateway](https://us-west-1.console.aws.amazon.com/apigateway)
+4. You can add authorization or leave the endpoint public
 
-1. Bundle your application with dependencies:
-   ```sh
-   npm run build
-   ```
-2. Deploy to AWS Lambda using the AWS CLI or your preferred deployment tool.
+## Usage and Data Format for Endpoint
+Invoke the Lambda. Here is the expected format of the data - an **array** of chats
+The field the endpoint expects is `chats` and it is an array. 
+The following table represents the chat JSON structure expected by the endpoint:
 
-## Usage
+| Key       | Type     | Description                                 | Example                                  |
+|-----------|----------|---------------------------------------------|------------------------------------------|
+| messages  | Array    | Array of message objects                    | See message object details below         |
+| model     | String   | The AI model being used                     | "GPT-3.5-turbo"                          |
 
-Provide instructions on how to use the application, including any command line options or API endpoints users should know about.
+### Message Object Format
 
+Each object in the `messages` array should contain:
+
+| Key      | Type   | Description                           | Example                                  |
+|----------|--------|---------------------------------------|------------------------------------------|
+| content  | String | The content of the message            | "Facebook ads or LinkedIn ads for a saas product" |
+| role     | String | The role of the entity sending message| "user" or "assistant"                    |
+| name     | String | The name of the sender                | "Maria Bailey" or "GPT-3.5-turbo"        |
+
+### Example JSON Payload
+
+```json
+[{
+  "messages": [
+    {
+      "content": "Facebook ads or LinkedIn ads for a saas product",
+      "role": "user",
+      "name": "Maria Bailey"
+    },
+    {
+      "content": "When deciding between Facebook ads and LinkedIn ads for a saas product",
+      "role": "assistant",
+      "name": "GPT-3.5-turbo"
+    }
+  ],
+  "model": "GPT-3.5-turbo"
+}]
+```
 ## Contributing
 
 We believe in open source and encourage the community to contribute to AI Adoption Metrics. If you're interested in contributing, feel free to open a PR.
