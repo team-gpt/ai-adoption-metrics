@@ -118,7 +118,7 @@ AI Adoption Metrics was conceived and initiated at the AI SF Hackathon, reflecti
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License.
 
 ## Acknowledgments
 
