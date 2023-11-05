@@ -7,8 +7,8 @@ import {
   chunkedPrompt,
   promptMaxTokens,
   summarizePrompt,
-  defaultTemperature,
 } from "./const";
+import { getModelTemperature } from "./env";
 BaseMessage;
 
 type Chat = {
@@ -18,17 +18,6 @@ type Chat = {
     name: string;
     content: string;
   }[];
-};
-
-const getModelTemperature = () => {
-  try {
-    if (process.env.MODEL_TEMPERATURE) {
-      return Number(process.env.MODEL_TEMPERATURE);
-    }
-    return defaultTemperature;
-  } catch (err) {
-    return defaultTemperature;
-  }
 };
 
 export const createChatInstance = () => {
