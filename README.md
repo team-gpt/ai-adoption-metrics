@@ -1,6 +1,7 @@
 # AI Adoption Metrics
 
 Welcome to [AI Adoption Metrics](https://aiadoptionmetrics.com/) - an open-source project designed to understand the intricacies of how, why, and when users are interacting with Language Learning Models (LLMs). Our focus is on analyzing conversations from various chat interfaces such as ChatGPT, Team-GPT, and Claude, providing insights into AI adoption and usage.
+<img width="1344" alt="image" src="https://github.com/team-gpt/ai-adoption-metrics/assets/60155068/9729dcf3-79ef-4b85-8b57-2133c3b2d739">
 
 ## Features
 
@@ -12,11 +13,15 @@ Welcome to [AI Adoption Metrics](https://aiadoptionmetrics.com/) - an open-sourc
 - **Email Integration**: Post-report creation, an automated email can be sent to users. While we assume you have a native system for transactional emails, we recommend tools like Zapier for automation if needed.
 
 ## Built With
+<img width="965" alt="image" src="https://github.com/team-gpt/ai-adoption-metrics/assets/60155068/bf3efd8b-e334-4e27-9247-254223aa226e">
 
 - [Langchain](https://langchain.readthedocs.io/) - For seamless AI integration and processing.
 - [Claude](https://claude.ai/) - Utilizing Anthropic's advanced language model for deep insights.
 - [TypeScript](https://www.typescriptlang.org/) - Application written in TypeScript for robust and maintainable code.
 - [AWS Lambda and API Gateway](https://aws.amazon.com/lambda/) - For scalable, on-demand cloud deployment.
+
+![image](https://github.com/team-gpt/ai-adoption-metrics/assets/60155068/ec114fd0-722a-436a-a6f7-2878aae6b898)
+
 
 ## Features
 
@@ -60,6 +65,9 @@ Welcome to [AI Adoption Metrics](https://aiadoptionmetrics.com/) - an open-sourc
 2. Add env variables - `ANTHROPIC_API_KEY` and `MODEL_TEMPERATURE`
 3. You can use the Lambda in the preferred way for you, but I suggest using [API Gateway](https://us-west-1.console.aws.amazon.com/apigateway)
 4. You can add authorization or leave the endpoint public
+
+<img width="876" alt="image" src="https://github.com/team-gpt/ai-adoption-metrics/assets/60155068/9ac9df1e-4846-43d3-9d32-1c38d24ff0bd">
+
 
 ## Usage and Data Format for Endpoint
 Invoke the Lambda. Here is the expected format of the data - an **array** of chats
