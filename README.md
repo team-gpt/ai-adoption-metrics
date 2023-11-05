@@ -60,7 +60,7 @@ Welcome to [AI Adoption Metrics](https://aiadoptionmetrics.com/) - an open-sourc
 ### Deployment
 
 1. Create `AWS Lambda Function` - follow this [guide](https://aws.amazon.com/pm/lambda/) and add code from the `zip` you created
-2. Add env variables - `ANTHROPIC_API_KEY` and `MODEL_TEMPERATURE`
+2. Add env variables - `ANTHROPIC_API_KEY` and `MODEL_TEMPERATURE`. `ZAPIER_URL` is required only if you would like to send the reports over email using Zapier.
 3. You can use the Lambda in the preferred way for you, but I suggest using [API Gateway](https://us-west-1.console.aws.amazon.com/apigateway)
 4. You can add authorization or leave the endpoint public
 
@@ -68,7 +68,13 @@ Welcome to [AI Adoption Metrics](https://aiadoptionmetrics.com/) - an open-sourc
 
 
 ## Usage and Data Format for Endpoint
-Invoke the Lambda. Here is the expected format of the data - an **array** of chats
+Invoke the Lambda. Here is the expected format of the data - an **array** of chats and optional `email` field.
+
+| Key                  | Type     | Description                                 | Example                         |
+|----------------------|----------|---------------------------------------------|---------------------------------|
+| chats                | Array    | Array of message objects and model field    | See message object details below|
+| email(optional)      | String   | The AI model being used                     | "GPT-3.5-turbo"                 |
+
 The field the endpoint expects is `chats` and it is an array. 
 The following table represents the chat JSON structure expected by the endpoint:
 
@@ -81,11 +87,11 @@ The following table represents the chat JSON structure expected by the endpoint:
 
 Each object in the `messages` array should contain:
 
-| Key      | Type   | Description                           | Example                                  |
-|----------|--------|---------------------------------------|------------------------------------------|
+| Key      | Type   | Description                           | Example                                           |
+|----------|--------|---------------------------------------|---------------------------------------------------|
 | content  | String | The content of the message            | "Facebook ads or LinkedIn ads for a saas product" |
-| role     | String | The role of the entity sending message| "user" or "assistant"                    |
-| name     | String | The name of the sender                | "Maria Bailey" or "GPT-3.5-turbo"        |
+| role     | String | The role of the entity sending message| "user" or "assistant"                             |
+| name     | String | The name of the sender                | "Maria Bailey" or "GPT-3.5-turbo"                 |
 
 ### Example JSON Payload
 
@@ -106,6 +112,14 @@ Each object in the `messages` array should contain:
   "model": "GPT-3.5-turbo"
 }]
 ```
+
+## Send report over e-mail (optional)
+
+<img width="459" alt="image" src="https://github.com/team-gpt/ai-adoption-metrics/assets/60155068/b40e4736-c6c7-443e-9e5f-86f487de945f">
+
+
+If you would like, you can use our special Zapier [template](https://zapier.com/shared/ai-adoption-metrics-catch-response-and-send-email/74d902218661a6a2c8875c2334d5ea3a21d63e6e). You will need to set up a Zapier webhook and set `ZAPIER_URL` (env variable) within AWS. Then if you are using the API Gateway you can pass `email` which would be the email address of the person you would like to receive the report.
+
 ## Contributing
 
 We believe in open source and encourage the community to contribute to AI Adoption Metrics. If you're interested in contributing, feel free to open a PR.
